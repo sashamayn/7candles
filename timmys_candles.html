@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<script>
+	btn_ids = {'c4': 0, 'c5' : 1, 'c6' : 2, 'c7' : 3, 'c1' : 4, 'c2' : 5, 'c3' : 6}
+	inverted = {0 : 'c4', 1 : 'c5', 2 : 'c6', 3 : 'c7', 4 : 'c1', 5 : 'c2', 6 : 'c3'}
+	actions = [];
+
+	// change color of this one and the two adjacent
+	// if undo is true, not pushing anything new
+	function changeThree(id, undo) {
+		if (undo == true){
+			actions.pop(actions[actions.length-1]);
+		}
+		else {
+			actions.push(document.getElementById(id).textContent);
+		}
+
+		var str = actions.toString();
+		document.getElementById("acts").textContent = str.split("").join(" ");
+
+		cur = btn_ids[id]
+		if (cur == 6) {
+			next = 0;
+			prev = 5;
+		}
+		else if (cur == 0){
+			next = 1;
+			prev = 6;
+		}
+		else {
+			next = cur+1;
+			prev = cur-1;
+		}
+		changeColor(id);
+		changeColor(inverted[prev]);
+		changeColor(inverted[next]);
+	}
+
+	function changeColor(id) {
+	    var property = document.getElementById(id);
+
+		if (property.style.backgroundColor == "rgb(252, 198, 162)") {
+		    property.style.background="rgb(46, 191, 163)";
+		}
+		else {
+		  property.style.background="rgb(252,198,162)";
+		}
+	}
+
+	function reset(){
+		var candles = document.getElementsByClassName('circle');
+		console.log(candles);
+
+		for (let item of candles) {
+			item.style.background="rgb(252,198,162)"
+
+		actions = [];
+		document.getElementById("acts").textContent = actions.toString();
+
+	}
+	}
+
+	function undoLast(){
+		// get last item from array
+		if (actions.length != 0){
+			last = actions[actions.length-1];
+			changeThree('c'.concat(last.toString()),true);
+
+		}
+	}
+
+	</script>
+
+<div class='circle-container'>
+	<div class='circle' id='c4' onclick="changeThree(id)" style='background-color: rgb(252,198,162);'>4</div>
+	<div class='circle' id='c5' onclick="changeThree(id)" style='background-color: rgb(252,198,162)';>5</div>
+	<div class='circle' id='c6' onclick="changeThree(id)" style='background-color: rgb(252,198,162)';>6</div>
+	<div class='circle' id='c7' onclick="changeThree(id)" style='background-color: rgb(252,198,162)'>7</div>
+	<div class='circle' id='c1' onclick="changeThree(id)" style='background-color: rgb(252,198,162)'>1</div>
+	<div class='circle' id='c2' onclick="changeThree(id)" style='background-color: rgb(252,198,162)'>2</div >
+	<div class='circle' id='c3' onclick="changeThree(id)" style='background-color: rgb(252,198,162)'>3</div>
+
+</div>
+ <center><button type="button" onclick="reset()" style="margin-top : 3em">reset</button><button type="button" onclick="undoLast()" style="margin-left : 1em margin-top : 3em">undo</button></center>
+ <div style="margin-top : 3em">
+ 	<p id="log" style='margin-left : 10em'>Candles blown: <span id='acts'></span></p>
+ </div>
+</body>
+
+</html>

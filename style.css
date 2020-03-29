@@ -1,0 +1,72 @@
+.circle-container {
+	position: relative;
+	width: 24em;
+	height: 24em;
+	padding: 2.8em;
+    /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
+	border: dashed 1px;
+	border-radius: 50%;
+	margin: 6em auto 0;
+}
+.circle-container div {
+	display: block;
+	position: absolute;
+	top: 50%; left: 50%;
+	width: 4em; height: 4em;
+	margin: -2em;
+}
+
+.circle { 
+   width: 25px;
+   height: 25px;
+   border-radius: 70px;
+   line-height: 60px;
+   display: inline-block;
+   text-align: center;
+   background-color : rgb(46, 191, 163);
+/*   border-color: #FF7F50;*/
+}
+
+/*.circle {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #fff;
+  line-height: 500px;
+  text-align: center;
+  background: #000
+}*/
+/*.circle-container img { display: block; width: 100%; }*/
+
+#c4 { 
+    transform: translate(12em); 
+    } /* 12em = half the width of the wrapper */
+
+#c5 { 
+    transform: rotate(52deg) translate(12em) rotate(-52deg); 
+}
+
+#c6 { 
+    transform: rotate(104deg) translate(12em) rotate(-104deg); 
+}
+
+#c7 { 
+    transform: rotate(156deg) translate(12em) rotate(-156deg);
+}
+
+#c1 { 
+    transform: rotate(208deg) translate(12em) rotate(-208deg); 
+}
+
+#c2 { 
+    transform: rotate(260deg) translate(12em) rotate(-260deg); 
+}
+
+#c3 { 
+    transform: rotate(309deg) translate(12em) rotate(-309deg); 
+}
+
+body { font-family : "Palatino Linotype", "Book Antiqua", Palatino, serif;
+       font-size: 18px;
+}
